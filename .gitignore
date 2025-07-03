@@ -1,0 +1,10 @@
+# Node
+node_modules
+
+dist
+
+# Firebase
+.firebase
+
+# Mac
+.DS_Store

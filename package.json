@@ -1,0 +1,47 @@
+{
+  "name": "eslint-plugin-pattern-rules",
+  "private": false,
+  "version": "0.1.5",
+  "description": "An ESLint plugin that allows you to ban or require specific patterns in code identifiers and literals using regular expressions. Ideal for enforcing consistent naming conventions and coding standards across your project.",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/takasqr/eslint-plugin-pattern-rules"
+  },
+  "homepage": "https://github.com/takasqr/eslint-plugin-pattern-rules",
+  "main": "./dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "test": "vitest",
+    "lint": "eslint src tests"
+  },
+  "keywords": [
+    "eslint",
+    "eslint-plugin",
+    "pattern",
+    "rules",
+    "linting",
+    "code-quality",
+    "regular-expressions",
+    "coding-standards",
+    "naming-conventions",
+    "identifier-patterns",
+    "code-style"
+  ],
+  "author": "takasqr",
+  "license": "MIT",
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@types/eslint": "^9.6.0",
+    "@types/node": "^22.4.0",
+    "eslint": "^9.12.0",
+    "globals": "^15.11.0",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.9.0",
+    "vitest": "^2.0.5"
+  }
+}

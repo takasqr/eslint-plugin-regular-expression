@@ -1,0 +1,17 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^9.9.0",
+    "eslint-plugin-pattern-rules": "file:.."
+  }
+}
