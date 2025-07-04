@@ -55,6 +55,6 @@ jobs:
         with:
           entryPoint: ./site
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ESLINT_PLUGIN_REGULAR_EXPRESSION }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_ESLINT_REGEXP_APP }}'
           channelId: live
           projectId: eslint-regexp-app

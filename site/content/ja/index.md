@@ -1,10 +1,10 @@
 
 
-# eslint-plugin-pattern-rules
+# eslint-plugin-regular-expression
 
 ## 概要
 
-`eslint-plugin-pattern-rules` は、コードベースでカスタムパターンを強制的に適用するためのESLintプラグインです。識別子やリテラルにおける特定のパターンを正規表現を使って禁止したり、必須にしたりすることができます。このプラグインは、厳格な命名規則や他のコーディングパターンをプロジェクト全体で一貫して強制する必要があるチームやプロジェクトに最適です。
+`eslint-plugin-regular-expression` は、コードベースでカスタムパターンを強制的に適用するためのESLintプラグインです。識別子やリテラルにおける特定のパターンを正規表現を使って禁止したり、必須にしたりすることができます。このプラグインは、厳格な命名規則や他のコーディングパターンをプロジェクト全体で一貫して強制する必要があるチームやプロジェクトに最適です。
 
 ## 機能
 
@@ -16,7 +16,7 @@
 プラグインをインストールするには、次のコマンドを実行します:
 
 ```bash
-npm i eslint eslint-plugin-pattern-rules -D
+npm i eslint eslint-plugin-regular-expression -D
 ```
 
 ## 使用方法
@@ -26,7 +26,7 @@ npm i eslint eslint-plugin-pattern-rules -D
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -73,7 +73,7 @@ export default [
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -123,7 +123,7 @@ const str = "defghi";    // これも許可されている
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -170,7 +170,7 @@ This rule accepts the following options:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -219,7 +219,7 @@ This rule accepts an object with the following properties:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -265,7 +265,7 @@ This rule accepts an object with the following properties:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -309,7 +309,7 @@ This rule accepts an object with the following properties:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {

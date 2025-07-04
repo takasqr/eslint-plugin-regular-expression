@@ -1,13 +1,13 @@
-import patternRules from 'eslint-plugin-pattern-rules';
+import regularExpression from 'eslint-plugin-regular-expression';
 
 const config = [
   {
     plugins: {
-      patternRules,
+      regularExpression,
     },
     rules: {
-      'patternRules/banned': 'error',
-      'patternRules/required': 'error',
+      'regularExpression/banned': 'error',
+      'regularExpression/required': 'error',
     },
   },
 ];

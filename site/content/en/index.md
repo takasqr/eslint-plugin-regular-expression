@@ -1,10 +1,10 @@
 
 
-# eslint-plugin-pattern-rules
+# eslint-plugin-regular-expression
 
 ## Overview
 
-The `eslint-plugin-pattern-rules` is an ESLint plugin designed to help enforce custom patterns in your codebase. It allows you to ban or require specific patterns in identifiers and literals using regular expressions. This plugin is ideal for teams or projects with strict naming conventions or other coding patterns that need to be consistently enforced across a project.
+The `eslint-plugin-regular-expression` is an ESLint plugin designed to help enforce custom patterns in your codebase. It allows you to ban or require specific patterns in identifiers and literals using regular expressions. This plugin is ideal for teams or projects with strict naming conventions or other coding patterns that need to be consistently enforced across a project.
 
 ## Features
 
@@ -16,7 +16,7 @@ The `eslint-plugin-pattern-rules` is an ESLint plugin designed to help enforce c
 To install the plugin, run:
 
 ```bash
-npm i eslint eslint-plugin-pattern-rules -D
+npm i eslint eslint-plugin-regular-expression -D
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ Once installed, you can use the plugin in your ESLint configuration. Here’s an
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -72,7 +72,7 @@ This rule accepts the following options:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -122,7 +122,7 @@ This rule accepts the following options:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -169,7 +169,7 @@ This rule accepts the following options:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -218,7 +218,7 @@ This rule accepts an object with the following properties:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -264,7 +264,7 @@ This rule accepts an object with the following properties:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
@@ -308,7 +308,7 @@ This rule accepts an object with the following properties:
 __eslint.config.js__
 
 ```js
-import patternRules from 'eslint-plugin-pattern-rules';
+import patternRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
