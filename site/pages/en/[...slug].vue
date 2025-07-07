@@ -15,6 +15,7 @@
 
 <script setup lang="ts">
 definePageMeta({
-  layout: 'en-default'
+  layout: 'en-default',
+  middleware: ['trailing-slash']
 })
 </script>
