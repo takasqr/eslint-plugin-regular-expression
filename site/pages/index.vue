@@ -13,6 +13,6 @@ import { useRouter } from '#app';
 const router = useRouter();
 
 onMounted(() => {
-  router.push('/en');
+  router.push('/en/');
 });
 </script>
