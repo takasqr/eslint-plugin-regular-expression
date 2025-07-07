@@ -53,7 +53,7 @@ import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
-  { name: '日本語', href: `/ja` }
+  { name: '日本語', href: `/ja/` }
 ]
 
 const mobileMenuOpen = ref(false)

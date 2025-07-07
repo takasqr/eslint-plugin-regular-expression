@@ -99,7 +99,7 @@ import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
-  { name: 'English', href: `/en` }
+  { name: 'English', href: `/en/` }
 ]
 
 const mobileMenuOpen = ref(false)
