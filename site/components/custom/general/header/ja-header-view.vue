@@ -99,7 +99,9 @@ import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
 
 const navigation = [
-  { name: 'English', href: `/en/` }
+  { name: 'English', href: `/en/` },
+  { name: 'npm', href: 'https://www.npmjs.com/package/eslint-plugin-regular-expression' },
+  { name: 'GitHub', href: 'https://github.com/takasqr/eslint-plugin-regular-expression' }
 ]
 
 const mobileMenuOpen = ref(false)
