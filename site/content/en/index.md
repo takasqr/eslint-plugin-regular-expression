@@ -2,6 +2,8 @@
 
 # eslint-plugin-regular-expression
 
+Define ESLint rules freely with regular expressions
+
 ## Overview
 
 The `eslint-plugin-regular-expression` is an ESLint plugin designed to help enforce custom patterns in your codebase. It allows you to ban or require specific patterns in identifiers and literals using regular expressions. This plugin is ideal for teams or projects with strict naming conventions or other coding patterns that need to be consistently enforced across a project.
