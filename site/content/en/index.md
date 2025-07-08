@@ -1,29 +1,29 @@
 # eslint-plugin-regular-expression
 
-**正規表現で ESLint のルールを定義する**
+**Define ESLint rules using regular expressions**
 
-## 概要
+## Overview
 
-`eslint-plugin-regular-expression` は、ESLint に正規表現を使ったルール定義を可能にするプラグインです。変数名、関数名、文字列リテラルなどに対して、**禁止**または**必須**のパターンを正規表現で指定できます。命名規則の統一や危険な文字列の排除、スタイルの一貫性を正規表現だけで実現できます。
+`eslint-plugin-regular-expression` is an ESLint plugin that enables rule definitions using regular expressions. It allows you to specify **banned** or **required** patterns for variable names, function names, string literals, and more. You can enforce naming conventions, eliminate unsafe strings, and maintain consistent code styles using just regular expressions.
 
-コードパターンを細かく制御し、厳格な構造を求めるチームやプロジェクトに最適です。
+It’s ideal for teams and projects that require fine-grained control over code patterns and strict structure.
 
-## 特徴
+## Features
 
-* **禁止パターン（Ban）**：変数名や関数名、リテラルなどに対して、特定のパターンを正規表現で禁止できます。
-* **必須パターン（Require）**：識別子やリテラルが特定のパターンに一致していることを強制できます。
+* **Banned Patterns**: You can ban specific patterns in variable names, function names, literals, etc., using regular expressions.
+* **Required Patterns**: You can enforce that identifiers or literals match certain regular expression patterns.
 
-## インストール
+## Installation
 
-以下のコマンドでインストールします：
+Install with the following command:
 
 ```bash
 npm i eslint eslint-plugin-regular-expression -D
 ```
 
-## 使い方
+## Usage
 
-インストール後、ESLint 設定ファイルにプラグインを追加して使用します。以下はその例です：
+After installing, add the plugin to your ESLint config. Example:
 
 **eslint.config.js**
 
@@ -44,14 +44,14 @@ export default [
 ];
 ```
 
-この例では：
+In this example:
 
-* `banned` ルールは、`forbidde*` に一致する識別子やリテラルを禁止します。
-* `required` ルールは、`required` を含む識別子やリテラルを必須とします。
+* The `banned` rule disallows identifiers or literals matching `forbidde*`.
+* The `required` rule enforces the presence of identifiers or literals that include `required`.
 
-このプラグインは JavaScript や TypeScript プロジェクトにシームレスに統合できます。
+This plugin integrates seamlessly with JavaScript and TypeScript projects.
 
-## ルール一覧
+## Rule List
 
 * [banned](#banned)
 * [banned-identifier](#banned-identifier)
@@ -62,15 +62,15 @@ export default [
 
 ### banned
 
-#### 説明
+#### Description
 
-正規表現に一致する識別子やリテラルを禁止します。
+Bans identifiers or literals that match the specified regular expressions.
 
-#### オプション
+#### Options
 
-* `patterns`: 禁止する正規表現パターンの配列。
+* `patterns`: An array of regular expressions to ban.
 
-#### 設定例
+#### Example Configuration
 
 ```js
 rules: {
@@ -78,14 +78,14 @@ rules: {
 }
 ```
 
-#### NG 例：
+#### Invalid Example (NG):
 
 ```js
 const fooVar = "test";
 const str = "myabc";
 ```
 
-#### OK 例：
+#### Valid Example (OK):
 
 ```js
 const barVar = "test";
@@ -94,15 +94,15 @@ const str = "defghi";
 
 ### banned-identifier
 
-#### 説明
+#### Description
 
-指定した正規表現に一致する識別子（変数名や関数名など）を禁止します。
+Bans identifiers (such as variable or function names) that match the specified regular expressions.
 
-#### オプション
+#### Options
 
-* `patterns`: 禁止する正規表現パターンの配列。
+* `patterns`: An array of regular expressions to ban.
 
-#### 設定例
+#### Example Configuration
 
 ```js
 rules: {
@@ -110,14 +110,14 @@ rules: {
 }
 ```
 
-#### NG 例：
+#### Invalid Example (NG):
 
 ```js
 const fooVariable = 1;
 let myBar = "test";
 ```
 
-#### OK 例：
+#### Valid Example (OK):
 
 ```js
 const testVariable = 1;
@@ -126,15 +126,15 @@ let baz = "test";
 
 ### banned-literal
 
-#### 説明
+#### Description
 
-正規表現に一致する文字列リテラルを禁止します。
+Bans string literals that match the specified regular expressions.
 
-#### オプション
+#### Options
 
-* `patterns`: 禁止する正規表現パターンの配列。
+* `patterns`: An array of regular expressions to ban.
 
-#### 設定例
+#### Example Configuration
 
 ```js
 rules: {
@@ -142,14 +142,14 @@ rules: {
 }
 ```
 
-#### NG 例：
+#### Invalid Example (NG):
 
 ```js
 const str = "abcTest";
 const another = "endxyz";
 ```
 
-#### OK 例：
+#### Valid Example (OK):
 
 ```js
 const str = "defTest";
@@ -158,15 +158,15 @@ const another = "end";
 
 ### required
 
-#### 説明
+#### Description
 
-識別子やリテラルが、いずれかの正規表現パターンに一致している必要があります。
+Requires that identifiers or literals match at least one of the specified regular expression patterns.
 
-#### オプション
+#### Options
 
-* `patterns`: 必須とする正規表現パターンの配列。
+* `patterns`: An array of required regular expressions.
 
-#### 設定例
+#### Example Configuration
 
 ```js
 rules: {
@@ -174,13 +174,13 @@ rules: {
 }
 ```
 
-#### NG 例：
+#### Invalid Example (NG):
 
 ```js
 const varName = "invalid";
 ```
 
-#### OK 例：
+#### Valid Example (OK):
 
 ```js
 const fooVar = "barValue";
@@ -188,15 +188,15 @@ const fooVar = "barValue";
 
 ### required-identifier
 
-#### 説明
+#### Description
 
-識別子が指定された正規表現のいずれかに一致している必要があります。
+Requires that identifiers match at least one of the specified regular expressions.
 
-#### オプション
+#### Options
 
-* `patterns`: 必須とする正規表現パターンの配列。
+* `patterns`: An array of required regular expressions.
 
-#### 設定例
+#### Example Configuration
 
 ```js
 rules: {
@@ -204,13 +204,13 @@ rules: {
 }
 ```
 
-#### NG 例：
+#### Invalid Example (NG):
 
 ```js
 const varName = 1;
 ```
 
-#### OK 例：
+#### Valid Example (OK):
 
 ```js
 const myVar = 1;
@@ -219,15 +219,15 @@ const fooBar = 2;
 
 ### required-literal
 
-#### 説明
+#### Description
 
-文字列リテラルが指定された正規表現のいずれかに一致している必要があります。
+Requires that string literals match at least one of the specified regular expressions.
 
-#### オプション
+#### Options
 
-* `patterns`: 必須とする正規表現パターンの配列。
+* `patterns`: An array of required regular expressions.
 
-#### 設定例
+#### Example Configuration
 
 ```js
 rules: {
@@ -235,13 +235,13 @@ rules: {
 }
 ```
 
-#### NG 例：
+#### Invalid Example (NG):
 
 ```js
 const text = "invalid";
 ```
 
-#### OK 例：
+#### Valid Example (OK):
 
 ```js
 const greeting = "hello";
