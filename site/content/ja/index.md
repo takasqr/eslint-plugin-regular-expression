@@ -1,31 +1,31 @@
-
-
 # eslint-plugin-regular-expression
 
-__正規表現で自由に ESLint のルールを定義__
+**正規表現で ESLint のルールを定義する**
 
 ## 概要
 
-`eslint-plugin-regular-expression` は、コードベースでカスタムパターンを強制的に適用するためのESLintプラグインです。識別子やリテラルにおける特定のパターンを正規表現を使って禁止したり、必須にしたりすることができます。このプラグインは、厳格な命名規則や他のコーディングパターンをプロジェクト全体で一貫して強制する必要があるチームやプロジェクトに最適です。
+`eslint-plugin-regular-expression` は、ESLint に正規表現を使ったルール定義を可能にするプラグインです。変数名、関数名、文字列リテラルなどに対して、**禁止**または**必須**のパターンを正規表現で指定できます。命名規則の統一や危険な文字列の排除、スタイルの一貫性を正規表現だけで実現できます。
 
-## 機能
+コードパターンを細かく制御し、厳格な構造を求めるチームやプロジェクトに最適です。
 
-- 特定のパターンを禁止: 変数名、関数名、リテラル、またはコード内の任意の識別子において、禁止するパターンを定義できます。
-- 特定のパターンを必須に: 識別子やリテラルに常に特定のパターンが存在することを強制することができます。
+## 特徴
+
+* **禁止パターン（Ban）**：変数名や関数名、リテラルなどに対して、特定のパターンを正規表現で禁止できます。
+* **必須パターン（Require）**：識別子やリテラルが特定のパターンに一致していることを強制できます。
 
 ## インストール
 
-プラグインをインストールするには、次のコマンドを実行します:
+以下のコマンドでインストールします：
 
 ```bash
 npm i eslint eslint-plugin-regular-expression -D
 ```
 
-## 使用方法
+## 使い方
 
-インストール後、ESLintの設定ファイルでプラグインを使用できます。以下はプラグインを使用した設定例です:
+インストール後、ESLint 設定ファイルにプラグインを追加して使用します。以下はその例です：
 
-__eslint.config.js__
+**eslint.config.js**
 
 ```js
 import patternRules from 'eslint-plugin-regular-expression';
@@ -44,297 +44,206 @@ export default [
 ];
 ```
 
-この例では:
+この例では：
 
-- `banned` ルールは、パターン `forbidde*` に一致する識別子やリテラルを禁止します。
-- `required` ルールは、識別子やリテラルに特定のパターン `required` が含まれていることを強制します。
+* `banned` ルールは、`forbidde*` に一致する識別子やリテラルを禁止します。
+* `required` ルールは、`required` を含む識別子やリテラルを必須とします。
 
-このプラグインは、JavaScriptまたはTypeScriptのプロジェクトに適しており、ESLintのルール設定とシームレスに統合されます。
+このプラグインは JavaScript や TypeScript プロジェクトにシームレスに統合できます。
 
+## ルール一覧
 
-## ルール
-
-- [banned](#banned)
-- [banned-identifier](#banned-identifier)
-- [banned-literal](#banned-literal)
-- [required](#required)
-- [required-identifier](#required-identifier)
-- [required-literal](#required-literal)
+* [banned](#banned)
+* [banned-identifier](#banned-identifier)
+* [banned-literal](#banned-literal)
+* [required](#required)
+* [required-identifier](#required-identifier)
+* [required-literal](#required-literal)
 
 ### banned
 
-#### Description
-このルールは、ユーザーが定義した正規表現に基づいて、識別子やリテラル内の特定のパターンを禁止します。
+#### 説明
 
-#### Options
-このルールは以下のオプションを受け付けます:
+正規表現に一致する識別子やリテラルを禁止します。
 
-- patterns: 正規表現パターンを表す文字列の配列。これらのパターンを識別子やリテラルで禁止します。
-#### Example Configuration
+#### オプション
 
-__eslint.config.js__
+* `patterns`: 禁止する正規表現パターンの配列。
 
-```js
-import patternRules from 'eslint-plugin-regular-expression';
-
-export default [
-  {
-    files: ["*.js", "*.ts"],
-    plugins: {
-      'pattern-rules': patternRules,
-    },
-    rules: {
-      'pattern-rules/banned': ["error", { "patterns": ["^foo", "abc$"] }]
-    },
-  },
-];
-```
-
-#### Example of incorrect code:
+#### 設定例
 
 ```js
-// With patterns: ["^foo", "abc$"]
-const fooVar = "test";   // `fooVar`は禁止されている
-const str = "myabc";     // これも禁止されている
-
+rules: {
+  'pattern-rules/banned': ["error", { "patterns": ["^foo", "abc$"] }]
+}
 ```
 
-#### Example of correct code:
+#### NG 例：
+
 ```js
-// With patterns: ["^foo", "abc$"]
-const barVar = "test";   // これは許可されている
-const str = "defghi";    // これも許可されている
-
+const fooVar = "test";
+const str = "myabc";
 ```
 
+#### OK 例：
+
+```js
+const barVar = "test";
+const str = "defghi";
+```
 
 ### banned-identifier
 
-#### Description
-このルールは、ユーザーが定義した正規表現に基づいて、識別子内の特定のパターンを禁止します。
+#### 説明
 
+指定した正規表現に一致する識別子（変数名や関数名など）を禁止します。
 
-#### Options
-このルールは以下のオプションを受け付けます:
+#### オプション
 
-- `patterns`: 正規表現パターンを表す文字列の配列。これらのパターンを識別子で禁止します。
+* `patterns`: 禁止する正規表現パターンの配列。
 
-#### Example Configuration
-
-
-__eslint.config.js__
+#### 設定例
 
 ```js
-import patternRules from 'eslint-plugin-regular-expression';
-
-export default [
-  {
-    files: ["*.js", "*.ts"],
-    plugins: {
-      'pattern-rules': patternRules,
-    },
-    rules: {
-      'pattern-rules/banned-identifier': ["error", { "patterns": ["^foo", "bar$"] }]
-    },
-  },
-];
+rules: {
+  'pattern-rules/banned-identifier': ["error", { "patterns": ["^foo", "bar$"] }]
+}
 ```
 
-#### Example of incorrect code:
+#### NG 例：
 
 ```js
-// With patterns: ["^foo", "bar$"]
-const fooVariable = 1; // `fooVariable`は禁止されている
-let myBar = "test";    // `myBar`は禁止されている
+const fooVariable = 1;
+let myBar = "test";
 ```
 
-#### Example of correct code:
+#### OK 例：
+
 ```js
-// With patterns: ["^foo", "bar$"]
-const testVariable = 1; // これは許可されている
-let baz = "test";       // これも許可されている
+const testVariable = 1;
+let baz = "test";
 ```
 
 ### banned-literal
 
-#### Description
+#### 説明
 
-This rule bans specific patterns in string literals based on user-defined regular expressions.
+正規表現に一致する文字列リテラルを禁止します。
 
+#### オプション
 
-#### Options
-This rule accepts the following options:
+* `patterns`: 禁止する正規表現パターンの配列。
 
-- patterns: An array of strings, each representing a regular expression pattern to ban in literals.
-
-#### Example Configuration
-
-__eslint.config.js__
+#### 設定例
 
 ```js
-import patternRules from 'eslint-plugin-regular-expression';
-
-export default [
-  {
-    files: ["*.js", "*.ts"],
-    plugins: {
-      'pattern-rules': patternRules,
-    },
-    rules: {
-      'pattern-rules/banned-literal': ["error", { "patterns": ["^abc", "xyz$"] }]
-    },
-  },
-];
+rules: {
+  'pattern-rules/banned-literal': ["error", { "patterns": ["^abc", "xyz$"] }]
+}
 ```
-#### Example of incorrect code:
+
+#### NG 例：
 
 ```js
-// With patterns: ["^abc", "xyz$"]
-const str = "abcTest";  // This is banned
-const another = "endxyz"; // This is banned
-
+const str = "abcTest";
+const another = "endxyz";
 ```
 
-#### Example of correct code:
+#### OK 例：
+
 ```js
-// With patterns: ["^abc", "xyz$"]
-const str = "defTest";  // This is allowed
-const another = "end";  // This is allowed
-
+const str = "defTest";
+const another = "end";
 ```
-
-
 
 ### required
 
-#### Description
-This rule requires specific patterns in both identifiers and string literals. Both identifiers and string literals must match one or more of the provided regular expression patterns.
+#### 説明
 
+識別子やリテラルが、いずれかの正規表現パターンに一致している必要があります。
 
-#### Options
-This rule accepts an object with the following properties:
+#### オプション
 
-- `patterns`: An array of strings, each representing a regular expression pattern that both identifiers and string literals must match.
+* `patterns`: 必須とする正規表現パターンの配列。
 
-#### Example Configuration
-
-__eslint.config.js__
+#### 設定例
 
 ```js
-import patternRules from 'eslint-plugin-regular-expression';
-
-export default [
-  {
-    files: ["*.js", "*.ts"],
-    plugins: {
-      'pattern-rules': patternRules,
-    },
-    rules: {
-      'pattern-rules/required': ["error", { "patterns": ["^foo", "bar"] }]
-    },
-  },
-];
+rules: {
+  'pattern-rules/required': ["error", { "patterns": ["^foo", "bar"] }]
+}
 ```
-#### Example of incorrect code:
+
+#### NG 例：
 
 ```js
-const varName = "invalid";  // Identifier does not match "^foo" and string literal does not match "bar"
-
+const varName = "invalid";
 ```
 
-#### Example of correct code:
+#### OK 例：
+
 ```js
 const fooVar = "barValue";
-
 ```
-
-
-
 
 ### required-identifier
 
-#### Description
-This rule requires specific patterns in identifiers. Identifiers must match one or more of the provided regular expression patterns.
+#### 説明
 
+識別子が指定された正規表現のいずれかに一致している必要があります。
 
-#### Options
-This rule accepts an object with the following properties:
+#### オプション
 
-- `patterns`: An array of strings, each representing a regular expression pattern that identifiers must match.
+* `patterns`: 必須とする正規表現パターンの配列。
 
-#### Example Configuration
-
-__eslint.config.js__
+#### 設定例
 
 ```js
-import patternRules from 'eslint-plugin-regular-expression';
-
-export default [
-  {
-    files: ["*.js", "*.ts"],
-    plugins: {
-      'pattern-rules': patternRules,
-    },
-    rules: {
-      'pattern-rules/required-identifier': ["error", { "patterns": ["^my", "^foo"] }]
-    },
-  },
-];
+rules: {
+  'pattern-rules/required-identifier': ["error", { "patterns": ["^my", "^foo"] }]
+}
 ```
-#### Example of incorrect code:
+
+#### NG 例：
 
 ```js
-
-const varName = 1;  // Does not match "^my" or "^foo"
+const varName = 1;
 ```
 
-#### Example of correct code:
+#### OK 例：
+
 ```js
 const myVar = 1;
 const fooBar = 2;
 ```
 
-
 ### required-literal
 
-#### Description
+#### 説明
 
-This rule requires specific patterns in string literals. String literals must match one or more of the provided regular expression patterns.
+文字列リテラルが指定された正規表現のいずれかに一致している必要があります。
 
-#### Options
-This rule accepts an object with the following properties:
+#### オプション
 
-- `patterns`: An array of strings, each representing a regular expression pattern that string literals must match.
+* `patterns`: 必須とする正規表現パターンの配列。
 
-#### Example Configuration
-
-__eslint.config.js__
+#### 設定例
 
 ```js
-import patternRules from 'eslint-plugin-regular-expression';
-
-export default [
-  {
-    files: ["*.js", "*.ts"],
-    plugins: {
-      'pattern-rules': patternRules,
-    },
-    rules: {
-      'pattern-rules/required-literal': ["error", { "patterns": ["hello", "world"] }]
-    },
-  },
-];
+rules: {
+  'pattern-rules/required-literal': ["error", { "patterns": ["hello", "world"] }]
+}
 ```
-#### Example of incorrect code:
+
+#### NG 例：
 
 ```js
-const text = "invalid";  // Does not match "hello" or "world"
+const text = "invalid";
 ```
 
-#### Example of correct code:
+#### OK 例：
+
 ```js
 const greeting = "hello";
 const place = "world";
-
 ```
-
