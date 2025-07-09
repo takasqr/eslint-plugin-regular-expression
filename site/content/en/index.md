@@ -1,6 +1,15 @@
+---
+title: eslint-plugin-regular-expression | Custom ESLint rules with regexp
+description: eslint-plugin-regular-expression is a plugin that allows you to define ESLint rules using regular expressions. You can specify required or forbidden patterns for variable names, function names, strings, and more using regular expressions.
+createDate: 2025/07/10
+updated: 
+cover: '/ogp_image.webp'
+alt: eslint-plugin-regular-expression
+---
+
 # eslint-plugin-regular-expression
 
-**Define ESLint rules using regular expressions**
+**c**
 
 ## Overview
 

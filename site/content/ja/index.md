@@ -1,3 +1,12 @@
+---
+title: eslint-plugin-regular-expression | 正規表現で ESLint のルールを定義する
+description: eslint-plugin-regular-expression は、ESLint で正規表現を使ったルールを作ることができるプラグインです。変数名、関数名、文字列などに対して、禁止または必須のパターンを正規表現で指定できます。
+createDate: 2025/07/10
+updated: 
+cover: '/ogp_image.webp'
+alt: eslint-plugin-regular-expression
+---
+
 # eslint-plugin-regular-expression
 
 **正規表現で ESLint のルールを定義する**
