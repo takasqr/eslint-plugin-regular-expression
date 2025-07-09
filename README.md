@@ -2,6 +2,8 @@
 
 **Define ESLint rules using regular expressions**
 
+![logo](https://eslint.regexp.app/icon.png)
+
 ## Overview
 
 `eslint-plugin-regular-expression` is an ESLint plugin that enables rule definitions using regular expressions. It allows you to specify **banned** or **required** patterns for variable names, function names, string literals, and more. You can enforce naming conventions, eliminate unsafe strings, and maintain consistent code styles using just regular expressions.
