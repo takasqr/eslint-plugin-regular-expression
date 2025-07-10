@@ -1,19 +1,19 @@
 # eslint-plugin-regular-expression
 
-**Define ESLint rules using regular expressions**
-
 ![logo](https://eslint.regexp.app/icon.png)
+
+**Custom ESLint rules with regexp**
+
+![logo](https://eslint.regexp.app/screenshot.webp)
 
 ## Overview
 
-`eslint-plugin-regular-expression` is an ESLint plugin that enables rule definitions using regular expressions. It allows you to specify **banned** or **required** patterns for variable names, function names, string literals, and more. You can enforce naming conventions, eliminate unsafe strings, and maintain consistent code styles using just regular expressions.
-
-It’s ideal for teams and projects that require fine-grained control over code patterns and strict structure.
+`eslint-plugin-regular-expression` is a plugin that enables defining ESLint rules using regular expressions. You can specify **forbidden** or **required** patterns for variable names, function names, string literals, and more.
 
 ## Features
 
-* **Banned Patterns**: You can ban specific patterns in variable names, function names, literals, etc., using regular expressions.
-* **Required Patterns**: You can enforce that identifiers or literals match certain regular expression patterns.
+* **Ban Patterns**: Prohibit specific patterns using regular expressions for variable names, function names, strings, and more.
+* **Require Patterns**: Enforce the presence of specific patterns (expressed with regular expressions) in your code.
 
 ## Installation
 
@@ -25,22 +25,24 @@ npm i eslint eslint-plugin-regular-expression -D
 
 ## Usage
 
-After installing, add the plugin to your ESLint config. Example:
+After installation, add the plugin to your ESLint config. `eslint-plugin-regular-expression` supports Flat Config.
+
+Example:
 
 **eslint.config.js**
 
 ```js
-import patternRules from 'eslint-plugin-regular-expression';
+import regexpRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
     files: ["*.js", "*.ts"],
     plugins: {
-      'pattern-rules': patternRules,
+      'regexp-rules': regexpRules,
     },
     rules: {
-      'pattern-rules/banned': ['error', { patterns: ["forbidde*"] }],
-      'pattern-rules/required': ['error', { patterns: ["required"] }],
+      'regexp-rules/banned': ['error', { patterns: ["forbidde*"] }],
+      'regexp-rules/required': ['error', { patterns: ["required"] }],
     },
   },
 ];
@@ -48,10 +50,10 @@ export default [
 
 In this example:
 
-* The `banned` rule disallows identifiers or literals matching `forbidde*`.
-* The `required` rule enforces the presence of identifiers or literals that include `required`.
+* The `banned` rule prohibits patterns matching `forbidde*`.
+* The `required` rule enforces that the pattern `required` appears somewhere in the code.
 
-This plugin integrates seamlessly with JavaScript and TypeScript projects.
+This plugin can be used in both JavaScript and TypeScript projects.
 
 ## Document
 
