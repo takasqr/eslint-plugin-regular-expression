@@ -9,18 +9,20 @@ alt: eslint-plugin-regular-expression
 
 # eslint-plugin-regular-expression
 
+![logo](https://eslint.regexp.app/icon.png)
+
 **正規表現で ESLint のルールを定義する**
+
+![logo](https://eslint.regexp.app/screenshot.webp)
 
 ## 概要
 
-`eslint-plugin-regular-expression` は、ESLint に正規表現を使ったルール定義を可能にするプラグインです。変数名、関数名、文字列リテラルなどに対して、**禁止**または**必須**のパターンを正規表現で指定できます。命名規則の統一や危険な文字列の排除、スタイルの一貫性を正規表現だけで実現できます。
-
-コードパターンを細かく制御し、厳格な構造を求めるチームやプロジェクトに最適です。
+`eslint-plugin-regular-expression` は、ESLint に正規表現を使ったルール定義を可能にするプラグインです。変数名、関数名、文字列などに対して、**禁止**または**必須**のパターンを正規表現で指定できます。
 
 ## 特徴
 
-* **禁止パターン（Ban）**：変数名や関数名、リテラルなどに対して、特定のパターンを正規表現で禁止できます。
-* **必須パターン（Require）**：識別子やリテラルが特定のパターンに一致していることを強制できます。
+* **禁止パターン（Ban）**：変数名や関数名、文字列などに対して、特定のパターンを正規表現で禁止できます。
+* **必須パターン（Require）**：ファイル内のコードに、正規表現で表した特定のパターンが登場することを強制できます。
 
 ## インストール
 
@@ -32,22 +34,24 @@ npm i eslint eslint-plugin-regular-expression -D
 
 ## 使い方
 
-インストール後、ESLint 設定ファイルにプラグインを追加して使用します。以下はその例です：
+インストール後、ESLint 設定ファイルにプラグインを追加して使用します。`eslint-plugin-regular-expression`は Flat Config に対応しています。
+
+以下はその例です：
 
 **eslint.config.js**
 
 ```js
-import patternRules from 'eslint-plugin-regular-expression';
+import regexpRules from 'eslint-plugin-regular-expression';
 
 export default [
   {
     files: ["*.js", "*.ts"],
     plugins: {
-      'pattern-rules': patternRules,
+      'regexp-rules': regexpRules,
     },
     rules: {
-      'pattern-rules/banned': ['error', { patterns: ["forbidde*"] }],
-      'pattern-rules/required': ['error', { patterns: ["required"] }],
+      'regexp-rules/banned': ['error', { patterns: ["forbidde*"] }],
+      'regexp-rules/required': ['error', { patterns: ["required"] }],
     },
   },
 ];
@@ -55,10 +59,10 @@ export default [
 
 この例では：
 
-* `banned` ルールは、`forbidde*` に一致する識別子やリテラルを禁止します。
-* `required` ルールは、`required` を含む識別子やリテラルを必須とします。
+* `banned` ルールは、`forbidde*` に一致する変数名や関数名、文字列などを禁止します。
+* `required` ルールは、`required` がコード内に含まれることを必須とします。
 
-このプラグインは JavaScript や TypeScript プロジェクトにシームレスに統合できます。
+このプラグインは JavaScript や TypeScript プロジェクトで使用することができます。
 
 ## ルール一覧
 
@@ -73,7 +77,13 @@ export default [
 
 #### 説明
 
-正規表現に一致する識別子やリテラルを禁止します。
+指定した正規表現に一致する識別子やリテラルを禁止します。
+
+| 対象 | 例 | 対応 |
+|---|---|---|
+| 識別子 | 変数名、関数名など | ⭕️ |
+| リテラル | 文字列、数字など | ⭕️ |
+
 
 #### オプション
 
@@ -83,7 +93,7 @@ export default [
 
 ```js
 rules: {
-  'pattern-rules/banned': ["error", { "patterns": ["^foo", "abc$"] }]
+  'regexp-rules/banned': ["error", { "patterns": ["^foo", "abc$"] }]
 }
 ```
 
@@ -91,14 +101,16 @@ rules: {
 
 ```js
 const fooVar = "test";
+// Identifier "fooVar" is banned by pattern "^foo".eslint(regexp-rules/banned)
 const str = "myabc";
+// Literal "myabc" is banned by pattern "abc$".eslint(regexp-rules/banned)
 ```
 
 #### OK 例：
 
 ```js
-const barVar = "test";
-const str = "defghi";
+const barVar = "test"; // OK
+const str = "defghi"; // OK
 ```
 
 ### banned-identifier
@@ -107,6 +119,11 @@ const str = "defghi";
 
 指定した正規表現に一致する識別子（変数名や関数名など）を禁止します。
 
+| 対象 | 例 | 対応 |
+|---|---|---|
+| 識別子 | 変数名、関数名など | ⭕️ |
+| リテラル | 文字列、数字など | ❌ |
+
 #### オプション
 
 * `patterns`: 禁止する正規表現パターンの配列。
@@ -115,7 +132,7 @@ const str = "defghi";
 
 ```js
 rules: {
-  'pattern-rules/banned-identifier': ["error", { "patterns": ["^foo", "bar$"] }]
+  'regexp-rules/banned-identifier': ["error", { "patterns": ["^foo", "bar$"] }]
 }
 ```
 
@@ -123,21 +140,28 @@ rules: {
 
 ```js
 const fooVariable = 1;
+// Identifier "fooVariable" is banned by pattern "^foo".eslint(regexp-rules/banned-identifier)
 let myBar = "test";
+// Identifier "bar" is banned by pattern "bar$".eslint(regexp-rules/banned-identifier)
 ```
 
 #### OK 例：
 
 ```js
-const testVariable = 1;
-let baz = "test";
+const testVariable = 1; // OK
+let baz = "test"; // OK
 ```
 
 ### banned-literal
 
 #### 説明
 
-正規表現に一致する文字列リテラルを禁止します。
+指定した正規表現に一致するリテラル（文字列、数字など）を禁止します。
+
+| 対象 | 例 | 対応 |
+|---|---|---|
+| 識別子 | 変数名、関数名など | ❌ |
+| リテラル | 文字列、数字など | ⭕️ |
 
 #### オプション
 
@@ -147,7 +171,7 @@ let baz = "test";
 
 ```js
 rules: {
-  'pattern-rules/banned-literal': ["error", { "patterns": ["^abc", "xyz$"] }]
+  'regexp-rules/banned-literal': ["error", { "patterns": ["^abc", "xyz$"] }]
 }
 ```
 
@@ -155,7 +179,9 @@ rules: {
 
 ```js
 const str = "abcTest";
+// Literal "abcTest" is banned by pattern "^abc".eslint(regexp-rules/banned-literal)
 const another = "endxyz";
+// Literal "endxyz" is banned by pattern "xyz$".eslint(regexp-rules/banned-literal)
 ```
 
 #### OK 例：
@@ -169,7 +195,12 @@ const another = "end";
 
 #### 説明
 
-識別子やリテラルが、いずれかの正規表現パターンに一致している必要があります。
+コード内の識別子やリテラルが、いずれかの正規表現パターンに一致している必要があります。
+
+| 対象 | 例 | 対応 |
+|---|---|---|
+| 識別子 | 変数名、関数名など | ⭕️ |
+| リテラル | 文字列、数字など | ⭕️ |
 
 #### オプション
 
@@ -179,7 +210,7 @@ const another = "end";
 
 ```js
 rules: {
-  'pattern-rules/required': ["error", { "patterns": ["^foo", "bar"] }]
+  'regexp-rules/required': ["error", { "patterns": ["^foo", "bar"] }]
 }
 ```
 
@@ -187,19 +218,26 @@ rules: {
 
 ```js
 const varName = "invalid";
+// No identifiers or literals matching the required patterns: ^foo, bar.eslint(regexp-rules/required)
 ```
 
 #### OK 例：
 
 ```js
 const fooVar = "barValue";
+// OK
 ```
 
 ### required-identifier
 
 #### 説明
 
-識別子が指定された正規表現のいずれかに一致している必要があります。
+コード内の識別子が、いずれかの正規表現パターンに一致している必要があります。
+
+| 対象 | 例 | 対応 |
+|---|---|---|
+| 識別子 | 変数名、関数名など | ⭕️ |
+| リテラル | 文字列、数字など | ❌ |
 
 #### オプション
 
@@ -209,7 +247,7 @@ const fooVar = "barValue";
 
 ```js
 rules: {
-  'pattern-rules/required-identifier': ["error", { "patterns": ["^my", "^foo"] }]
+  'regexp-rules/required-identifier': ["error", { "patterns": ["^my", "^foo"] }]
 }
 ```
 
@@ -217,6 +255,7 @@ rules: {
 
 ```js
 const varName = 1;
+// No identifiers matching the required patterns: ^my, ^foo.eslint(regexp-rules/required-identifier)
 ```
 
 #### OK 例：
@@ -224,13 +263,19 @@ const varName = 1;
 ```js
 const myVar = 1;
 const fooBar = 2;
+// OK
 ```
 
 ### required-literal
 
 #### 説明
 
-文字列リテラルが指定された正規表現のいずれかに一致している必要があります。
+コード内のリテラルが、いずれかの正規表現パターンに一致している必要があります。
+
+| 対象 | 例 | 対応 |
+|---|---|---|
+| 識別子 | 変数名、関数名など | ❌ |
+| リテラル | 文字列、数字など | ⭕️ |
 
 #### オプション
 
@@ -240,7 +285,7 @@ const fooBar = 2;
 
 ```js
 rules: {
-  'pattern-rules/required-literal': ["error", { "patterns": ["hello", "world"] }]
+  'regexp-rules/required-literal': ["error", { "patterns": ["hello", "world"] }]
 }
 ```
 
@@ -248,6 +293,7 @@ rules: {
 
 ```js
 const text = "invalid";
+// No string literals matching the required patterns: hello, world.eslint(regexp-rules/required-literal)
 ```
 
 #### OK 例：
@@ -255,4 +301,5 @@ const text = "invalid";
 ```js
 const greeting = "hello";
 const place = "world";
+// OK
 ```
