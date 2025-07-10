@@ -9,7 +9,7 @@ alt: eslint-plugin-regular-expression
 
 # eslint-plugin-regular-expression
 
-**c**
+**Custom ESLint rules with regexp**
 
 ## Overview
 
